@@ -3,6 +3,9 @@ using Domain.Models;
 
 namespace Domain.AggregationModels.EmployeeAggregate;
 
+/// <summary>
+/// Дата рождения.
+/// </summary>
 public class BirthDate : ValueObject
 {
     public DateOnly Value { get; private set; }
@@ -32,6 +35,8 @@ public class BirthDate : ValueObject
     {
         Value = other.Value;
     }
+    
+    private BirthDate() {} // EF Ctor
 
     public void SetBirthDate(DateOnly birthDate)
     {

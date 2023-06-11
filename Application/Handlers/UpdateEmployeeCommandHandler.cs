@@ -6,6 +6,9 @@ using Persistence.UnitOfWork;
 
 namespace Application.Handlers;
 
+/// <summary>
+/// Обработчик операции редактирования записи.
+/// </summary>
 public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeCommand, Unit>
 {
     private readonly IEmployeeRepository _repository;
@@ -63,9 +66,12 @@ public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeComman
             entity.DateOfEmployment.SetDateOfEmployment(requestDateOfEmployment);
         }
 
-        if (entity.Salary.Value != request.Salary)
+        if (decimal.TryParse(request.Salary, out var parsedSalary))
         {
-            entity.Salary.SetSalary(request.Salary);
+            if (entity.Salary.Value != parsedSalary)
+            {
+                entity.Salary.SetSalary(parsedSalary);
+            }
         }
 
         await _repository.UpdateAsync(entity, cancellationToken);

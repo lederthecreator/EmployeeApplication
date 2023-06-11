@@ -5,6 +5,9 @@ using Persistence.UnitOfWork;
 
 namespace Application.Handlers;
 
+/// <summary>
+/// Обработчик операции добавления.
+/// </summary>
 public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, int>
 {
     private readonly IEmployeeRepository _repository;

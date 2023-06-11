@@ -2,6 +2,9 @@ using MediatR;
 
 namespace Application.Commands.UpdateEmployee;
 
+/// <summary>
+/// Операция редактирования сущности.
+/// </summary>
 public class UpdateEmployeeCommand : IRequest<Unit>
 {
     public int Id { get; set; }
@@ -20,5 +23,5 @@ public class UpdateEmployeeCommand : IRequest<Unit>
     
     public string DateOfEmployment { get; set; }
     
-    public decimal Salary { get; set; }
+    public string Salary { get; set; }
 }

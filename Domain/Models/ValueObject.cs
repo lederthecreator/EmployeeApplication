@@ -1,5 +1,9 @@
 namespace Domain.Models;
 
+/// <summary>
+/// Шаблон обьекта-значения.
+/// https://learn.microsoft.com/ru-ru/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/implement-value-objects
+/// </summary>
 public abstract class ValueObject
 {
     protected static bool EqualOperator(ValueObject left, ValueObject right)

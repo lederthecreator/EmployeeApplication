@@ -8,7 +8,7 @@ public class FullNameValueObjectTests
     public void CreateFullNameWithoutPatronymicInstanceSuccess()
     {
         // Arrange 
-        const string surname = "Иванов";
+        const string surname = "Петров";
         const string firstName = "Иван";
 
         // Act

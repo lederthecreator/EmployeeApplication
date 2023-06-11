@@ -2,6 +2,9 @@ using Domain.Models;
 
 namespace Domain.AggregationModels.EmployeeAggregate;
 
+/// <summary>
+/// Учреждение (отдел).
+/// </summary>
 public class Department : ValueObject
 {
     public string Code { get; private set; }

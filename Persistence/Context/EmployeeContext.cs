@@ -4,11 +4,17 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Persistence.Context;
 
+/// <summary>
+/// Контекст для работы с БД.
+/// </summary>
 public class EmployeeContext : DbContext
 {
     public DbSet<Employee> Employees { get; set; }
     
-    public EmployeeContext(DbContextOptions<EmployeeContext> options) : base(options) { }
+    public EmployeeContext(DbContextOptions<EmployeeContext> options) : base(options)
+    {
+        Database.Migrate();
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -55,14 +61,16 @@ public class EmployeeContext : DbContext
                     .IsRequired();
 
                 fn.Property(x => x.PatronymicName)
+                    .HasColumnName("patronymic_name")
                     .HasColumnType("varchar(200)")
-                    .HasColumnName("patronymic_name");
+                    .IsRequired(false);
             });
 
             builder.OwnsOne(e => e.BirthDate, bd =>
             {
                 bd.Property(x => x.Value)
                     .HasColumnName("birth_day")
+                    .ValueGeneratedNever()
                     .HasColumnType("date")
                     .IsRequired();
             });
@@ -71,7 +79,8 @@ public class EmployeeContext : DbContext
             {
                 doe.Property(x => x.Value)
                     .HasColumnName("date_of_employment")
-                    .HasColumnName("date")
+                    .ValueGeneratedNever()
+                    .HasColumnType("date")
                     .IsRequired();
             });
 

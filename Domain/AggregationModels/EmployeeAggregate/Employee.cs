@@ -2,6 +2,9 @@ using Domain.Models;
 
 namespace Domain.AggregationModels.EmployeeAggregate;
 
+/// <summary>
+/// Работник.
+/// </summary>
 public class Employee : Entity
 {
     public Employee(Department department, 
@@ -16,6 +19,8 @@ public class Employee : Entity
         DateOfEmployment = dateOfEmployment;
         Salary = salary;
     }
+    
+    private Employee() {} // EF Ctor
     
     public Department Department { get; }
     

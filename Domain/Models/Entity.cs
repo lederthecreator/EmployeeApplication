@@ -2,6 +2,10 @@ using MediatR;
 
 namespace Domain.Models;
 
+/// <summary>
+/// Шаблон сущности для паттерна DDD.
+/// https://learn.microsoft.com/ru-ru/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/net-core-microservice-domain-model
+/// </summary>
 public abstract class Entity
 {
     private int? _requestedHashCode;

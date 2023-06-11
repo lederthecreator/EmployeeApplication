@@ -2,12 +2,24 @@ using Domain.Models;
 
 namespace Domain.AggregationModels.EmployeeAggregate;
 
+/// <summary>
+/// Полное имя.
+/// </summary>
 public class FullName : ValueObject
 {
+    /// <summary>
+    /// Фамилия.
+    /// </summary>
     public string Surname { get; private set; }
     
+    /// <summary>
+    /// Имя.
+    /// </summary>
     public string FirstName { get; private set; }
     
+    /// <summary>
+    /// Отчество (необязательно).
+    /// </summary>
     public string? PatronymicName { get; set; }
 
     public FullName(string surname, string firstName)

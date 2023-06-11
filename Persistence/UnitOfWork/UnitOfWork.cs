@@ -2,6 +2,7 @@ using Persistence.Context;
 
 namespace Persistence.UnitOfWork;
 
+/// <inheritdoc cref="IUnitOfWork" />
 public class UnitOfWork : IUnitOfWork, IDisposable
 {
     private readonly EmployeeContext _context;
@@ -12,6 +13,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         _context = context;
     }
 
+    /// <inheritdoc />
     public EmployeeContext Context
     {
         get
@@ -25,6 +27,7 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         }
     }
     
+    /// <inheritdoc />
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         if (_isDisposed)

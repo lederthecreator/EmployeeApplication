@@ -1,10 +1,12 @@
 using Application.Queries.ListQuery;
 using Domain.AggregationModels.EmployeeAggregate;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace Application.Handlers;
 
+/// <summary>
+/// Обработчик запроса получения всех записей.
+/// </summary>
 public class GetAllQueryHandler : IRequestHandler<GetAllQuery, IEnumerable<Employee>>
 {
     private readonly IEmployeeRepository _repository;
@@ -28,7 +30,7 @@ public class GetAllQueryHandler : IRequestHandler<GetAllQuery, IEnumerable<Emplo
             baseQuery = request.OrderBy(baseQuery);
         }
 
-        var query = await baseQuery.ToListAsync(cancellationToken);
+        var query = baseQuery.ToList();
 
         return query;
     }

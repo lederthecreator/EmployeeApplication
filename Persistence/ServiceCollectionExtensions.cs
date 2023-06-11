@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using Domain.AggregationModels.EmployeeAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,13 +8,16 @@ using Persistence.UnitOfWork;
 
 namespace Persistence;
 
+/// <summary>
+/// Регистрация зависимостей для Peristence слоя.
+/// </summary>
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDbContext<EmployeeContext>(options =>
         {
-            options.UseNpgsql(configuration["EmployeeConnectionString"], sqlOptions =>
+            options.UseNpgsql(configuration.GetConnectionString("EmployeeConnectionString"), sqlOptions =>
             {
                 sqlOptions.MigrationsAssembly(typeof(EmployeeContext).Assembly.FullName);
             });

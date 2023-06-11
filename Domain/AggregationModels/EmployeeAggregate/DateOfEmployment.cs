@@ -3,6 +3,9 @@ using Domain.Models;
 
 namespace Domain.AggregationModels.EmployeeAggregate;
 
+/// <summary>
+/// Дата устройства на работу.
+/// </summary>
 public class DateOfEmployment : ValueObject
 {
     public DateOnly Value { get; private set; }
@@ -22,6 +25,8 @@ public class DateOfEmployment : ValueObject
     {
         Value = other.Value;
     }
+
+    private DateOfEmployment() { } // EF Ctor
 
     public void SetDateOfEmployment(DateOnly date)
     {

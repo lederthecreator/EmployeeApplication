@@ -21,5 +21,5 @@ public class CreateEmployeeCommand : IRequest<int>
     
     public string DateOfEmployment { get; set; }
     
-    public decimal Salary { get; set; }
+    public string Salary { get; set; }
 }

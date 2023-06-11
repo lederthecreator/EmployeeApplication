@@ -1,3 +1,4 @@
+using System.Runtime.InteropServices;
 using Domain.AggregationModels.EmployeeAggregate;
 
 namespace EmployeeApplication.Domain.Tests.ValueObjectTests;
@@ -5,7 +6,7 @@ namespace EmployeeApplication.Domain.Tests.ValueObjectTests;
 public class SalaryValueObjectTests
 {
     [Fact]
-    public void CreateSalaryInstanceSuccess()
+    public void CreateSalaryInstanceFromDecimalSuccess()
     {
         // Arrange
         const decimal salary = 130_000m;
@@ -16,13 +17,39 @@ public class SalaryValueObjectTests
         // Assert
         Assert.Equal(salary, result.Value);
     }
-
+    
     [Fact]
-    public void CreateSalaryInstanceFailure()
+    public void CreateSalaryInstanceFromStringSuccess()
     {
         // Arrange
-        const decimal salary = -120_000m;
+        const string salary = "130000";
+        const decimal correctSalary = 130_000m;
         
+        // Act
+        var result = new Salary(salary);
+        
+        // Assert
+        Assert.Equal(correctSalary, result.Value);
+    }
+
+    [Theory]
+    [InlineData(-10000)]
+    [InlineData(0)]
+    public void CreateSalaryInstanceFromDecimalFailure(decimal salary)
+    {
+        // Assert
+        Assert.Throws<Exception>(() =>
+        {
+            _ = new Salary(salary);
+        });
+    }
+    
+    [Theory]
+    [InlineData("-10000")]
+    [InlineData("0")]
+    [InlineData("")]
+    public void CreateSalaryInstanceFromStringFailure(string salary)
+    {
         // Assert
         Assert.Throws<Exception>(() =>
         {

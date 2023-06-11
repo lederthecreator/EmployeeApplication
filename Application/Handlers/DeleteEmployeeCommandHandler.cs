@@ -5,6 +5,9 @@ using Persistence.UnitOfWork;
 
 namespace Application.Handlers;
 
+/// <summary>
+/// Обработчик операции удаления.
+/// </summary>
 public class DeleteEmployeeCommandHandler : IRequestHandler<DeleteEmployeeCommand, Unit>
 {
     private readonly IEmployeeRepository _repository;

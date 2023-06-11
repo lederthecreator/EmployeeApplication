@@ -4,6 +4,9 @@ using MediatR;
 
 namespace Application.Handlers;
 
+/// <summary>
+/// Обработчик запроса получения записи по идентификатору.
+/// </summary>
 public class GetEmployeeByIdHandler : IRequestHandler<GetEmployeeByIdQuery, Employee>
 {
     private readonly IEmployeeRepository _repository;
